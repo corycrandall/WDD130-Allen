@@ -30,11 +30,18 @@
         h1, h2, h3 {
             font-family: "Montserrat", sans-serif;
         }
-        header, footer {
+        header {
             background-color: var(--accent-2);
-            color: var(--secondary);
+            border-bottom: 6px solid var(--primary);
             padding: 1rem;
             text-align: center;
+        }
+        header img {
+            display: block;
+            margin: 0 auto 0.75rem;
+            max-width: 100%;
+            width: 340px;
+            height: auto;
         }
         header a {
             color: var(--accent-1);
@@ -42,17 +49,44 @@
             font-weight: 700;
             text-decoration: none;
         }
+        header a:hover,
+        header a:focus {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        .hero {
+            background-color: var(--primary);
+            color: var(--accent-2);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .hero h1 {
+            margin: 0 0 0.25rem;
+        }
+        .hero p {
+            margin: 0.25rem 0;
+            font-size: 1.1rem;
+        }
         main {
             max-width: 60rem;
             margin: 0 auto;
             padding: 1.5rem 1rem;
         }
+        h2, h3 {
+            color: var(--primary);
+        }
+        footer {
+            background-color: var(--accent-2);
+            border-top: 6px solid var(--primary);
+            color: var(--secondary);
+            padding: 1rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <header>
-        <!-- TODO: replace with the client's logo once a usable image file is provided -->
-        <p><strong>Allen's MVD</strong></p>
+        <img src="images/allens-mvd-logo.png" alt="Allen's MVD mobile car detailing logo with a black sports car and a blue car outline">
         <nav>
             <a href="index.html">Home</a>
             <a href="services.html">Services &amp; Pricing</a>
@@ -60,11 +94,14 @@
         </nav>
     </header>
 
-    <main>
+    <section class="hero">
         <!-- Client name (required in the body for this assignment) -->
         <h1>Allen's MVD</h1>
         <p><strong>Owner: Saber Allen</strong></p>
+        <p>Mobile car detailing in Fairfield, Montana</p>
+    </section>
 
+    <main>
         <h2>A cleaner ride starts here.</h2>
         <p>
             Allen's MVD provides mobile detailing in Fairfield, Montana, and nearby areas.
