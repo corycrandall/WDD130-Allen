@@ -20,6 +20,7 @@
             --accent-1: #94D2BD;
             --accent-2: #001219;
         }
+        * { box-sizing: border-box; }
         body {
             margin: 0;
             font-family: "Lato", sans-serif;
@@ -29,64 +30,183 @@
         }
         h1, h2, h3 {
             font-family: "Montserrat", sans-serif;
+            line-height: 1.2;
         }
+
+        /* Header: logo on the left, navigation on the right */
         header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1.5rem;
             background-color: var(--accent-2);
             border-bottom: 6px solid var(--primary);
-            padding: 1rem;
-            text-align: center;
+            padding: 0.75rem 1.5rem;
         }
         header img {
             display: block;
-            margin: 0 auto 0.75rem;
+            width: 240px;
+            flex-shrink: 0;
             max-width: 100%;
-            width: 340px;
             height: auto;
         }
-        header a {
+        nav a {
             color: var(--accent-1);
-            margin: 0 0.75rem;
+            margin-left: 1.25rem;
             font-weight: 700;
             text-decoration: none;
         }
-        header a:hover,
-        header a:focus {
+        nav a:hover,
+        nav a:focus {
             color: var(--secondary);
             text-decoration: underline;
         }
+
+        /* Image placeholders (swap for real photos later) */
+        .placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            background-color: #fff;
+            border: 2px dashed var(--primary);
+            font-size: 0.9rem;
+        }
+        .icon-placeholder {
+            width: 40px;
+            height: 40px;
+            margin: 0.75rem auto 0;
+            background-color: #fff;
+            border: 2px dashed var(--primary);
+        }
+
+        /* Hero: large image area with headline and call to action */
         .hero {
-            background-color: var(--primary);
-            color: var(--accent-2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 22rem;
             padding: 2rem 1rem;
+            background-color: var(--primary); /* TODO: replace with a hero photo */
+            color: var(--accent-2);
             text-align: center;
         }
-        .hero h1 {
-            margin: 0 0 0.25rem;
+        .hero h1 { margin: 0.25rem 0; font-size: 2.25rem; }
+        .hero p { margin: 0.25rem 0; font-size: 1.1rem; }
+        .button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.4rem;
+            background-color: var(--accent-2);
+            color: var(--secondary);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
         }
-        .hero p {
-            margin: 0.25rem 0;
-            font-size: 1.1rem;
+        .button:hover,
+        .button:focus {
+            background-color: var(--secondary);
+            color: var(--accent-2);
+            outline: 2px solid var(--accent-2);
         }
-        main {
-            max-width: 60rem;
+
+        /* Three service columns */
+        .services {
+            max-width: 64rem;
             margin: 0 auto;
-            padding: 1.5rem 1rem;
+            padding: 2.5rem 1rem;
         }
-        h2, h3 {
-            color: var(--primary);
+        .services > h2 {
+            text-align: center;
+            margin-top: 0;
         }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .service-grid article { text-align: center; }
+        .service-grid .placeholder { aspect-ratio: 1 / 1; }
+        .service-grid h3 { margin: 0.5rem 0 0.25rem; }
+        .service-grid p { margin: 0; }
+
+        /* Feature band: image with an overlapping text card */
+        .feature {
+            background-color: var(--accent-1);
+            padding: 2.5rem 1rem;
+        }
+        .feature-inner {
+            position: relative;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+        .feature .placeholder {
+            width: 70%;
+            min-height: 18rem;
+        }
+        .feature-card {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            padding: 1.5rem;
+            background-color: var(--accent-2);
+            color: var(--secondary);
+        }
+        .feature-card h2 { margin-top: 0; }
+        .feature-card .button {
+            background-color: var(--primary);
+            color: var(--accent-2);
+        }
+        .feature-card .button:hover,
+        .feature-card .button:focus {
+            background-color: var(--secondary);
+            outline-color: var(--secondary);
+        }
+
+        /* Footer: business info, links, and social icon placeholders */
         footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             background-color: var(--accent-2);
             border-top: 6px solid var(--primary);
             color: var(--secondary);
-            padding: 1rem;
-            text-align: center;
+        }
+        footer p { margin: 0; }
+        footer a {
+            color: var(--accent-1);
+            margin-right: 1.25rem;
+        }
+
+        /* Mobile: stack everything */
+        @media (max-width: 700px) {
+            header { justify-content: center; text-align: center; }
+            nav a { margin: 0 0.6rem; }
+            .hero h1 { font-size: 1.75rem; }
+            .service-grid { grid-template-columns: 1fr; }
+            .service-grid .placeholder { aspect-ratio: 16 / 9; }
+            .feature .placeholder { width: 100%; min-height: 12rem; }
+            .feature-card {
+                position: static;
+                transform: none;
+                width: 100%;
+            }
+            footer { justify-content: center; text-align: center; }
+            footer a { margin: 0 0.6rem; }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="./images/allens-mvd-logo.png" alt="Allen's MVD mobile car detailing logo with a black sports car and a blue car outline">
+        <img src="images/allens-mvd-logo.png" alt="Allen's MVD mobile car detailing logo with a black sports car and a blue car outline">
         <nav>
             <a href="index.html">Home</a>
             <a href="services.html">Services &amp; Pricing</a>
@@ -94,35 +214,63 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <!-- Client name (required in the body for this assignment) -->
-        <h1>Allen's MVD</h1>
-        <p><strong>Owner: Saber Allen</strong></p>
-        <p>Mobile car detailing in Fairfield, Montana</p>
-    </section>
-
     <main>
-        <h2>A cleaner ride starts here.</h2>
-        <p>
-            Allen's MVD provides mobile detailing in Fairfield, Montana, and nearby areas.
-            We help cars and trucks look their best.
-        </p>
+        <!-- HERO (wireframe: large image with headline, text, and call-to-action button) -->
+        <section class="hero">
+            <!-- Client name (required in the body for this assignment) -->
+            <p><strong>Allen's MVD</strong> | Owner: Saber Allen</p>
+            <h1>A cleaner ride starts here.</h1>
+            <p>Mobile detailing in Fairfield, Montana, and nearby areas. We help cars and trucks look their best.</p>
+            <a class="button" href="tel:+14067810969">Call for a Quote</a>
+            <!-- TODO: add a hero photo of a detailed vehicle with descriptive alt text -->
+        </section>
 
-        <h3>Our Services</h3>
-        <ul>
-            <li>Interior detailing</li>
-            <li>Exterior cleaning</li>
-            <li>Full details</li>
-            <li>Ceramic coatings</li>
-        </ul>
+        <!-- THREE SERVICE COLUMNS (wireframe: image, small icon, label) -->
+        <section class="services">
+            <h2>Services that make your vehicle shine</h2>
+            <div class="service-grid">
+                <article>
+                    <div class="placeholder">Image placeholder: clean vehicle interior</div>
+                    <div class="icon-placeholder" title="Icon placeholder"></div>
+                    <h3>Interior</h3>
+                    <p>Vacuuming and interior cleaning.</p>
+                </article>
+                <article>
+                    <div class="placeholder">Image placeholder: freshly washed exterior</div>
+                    <div class="icon-placeholder" title="Icon placeholder"></div>
+                    <h3>Exterior</h3>
+                    <p>Washing and exterior cleaning.</p>
+                </article>
+                <article>
+                    <div class="placeholder">Image placeholder: full detail before and after</div>
+                    <div class="icon-placeholder" title="Icon placeholder"></div>
+                    <h3>Full Detail</h3>
+                    <p>Complete interior and exterior cleaning.</p>
+                </article>
+            </div>
+        </section>
 
-        <!-- TODO: add images of a detailed vehicle and a clean interior/exterior,
-             each with descriptive alt text, for example:
-             <img src="images/clean-exterior.jpg" alt="Freshly detailed black truck parked outside"> -->
+        <!-- FEATURE BAND (wireframe: image with an overlapping text card and button) -->
+        <section class="feature">
+            <div class="feature-inner">
+                <div class="placeholder">Image placeholder: ceramic coated paint</div>
+                <div class="feature-card">
+                    <h2>Ceramic Coating</h2>
+                    <p>Long-lasting paint protection using Gyeon Q² Mohs.</p>
+                    <a class="button" href="services.html">Pricing &amp; Quotes</a>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- FOOTER (wireframe: business info, links, and three small icon boxes) -->
     <footer>
         <p>Allen's MVD | Fairfield, MT | 406-781-0969</p>
+        <p>
+            <a href="services.html">Services &amp; Pricing</a>
+            <a href="gallery.html">Gallery</a>
+        </p>
+        <!-- TODO: social media icon links (wireframe shows three) once Saber provides accounts -->
     </footer>
 </body>
 </html>
